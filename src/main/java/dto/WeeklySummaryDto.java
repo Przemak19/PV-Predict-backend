@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class WeeklySummaryDto {
 
-    private double averageWeekPressure;
-    private double averageWeekSunExposureHours;
-    private double minWeekTemperature;
-    private double maxWeekTemperature;
+    private double averageWeekPressure;          // hPa
+    private double averageWeekSunExposureHours;  // hours
+    private double minWeekTemperature;           // celsius
+    private double maxWeekTemperature;           // celsius
     private String generalWeatherSummary;
 }

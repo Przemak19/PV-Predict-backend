@@ -11,7 +11,7 @@ public class DailyInformationDto {
 
     private LocalDate date;
     private int weatherCode;
-    private double minTemperature;
-    private double maxTemperature;
-    private double generatedEnergy;
+    private double minTemperature;  // celsius
+    private double maxTemperature;  // celsius
+    private double generatedEnergy; // kWh
 }
