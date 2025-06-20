@@ -92,7 +92,7 @@ public class PredictService {
                 .filter(this::isPrecipitation)
                 .count();
 
-        String summary = (precipitationDaysCount >= 4) ? "z opadami" : "bez opadów";
+        String summary = (precipitationDaysCount >= 4) ? "With precipitation" : "Without precipitation";
 
         WeeklySummaryDto summaryDto = new WeeklySummaryDto();
 
