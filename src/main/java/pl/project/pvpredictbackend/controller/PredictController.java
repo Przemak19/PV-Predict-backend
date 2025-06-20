@@ -1,12 +1,12 @@
-package controller;
+package pl.project.pvpredictbackend.controller;
 
-import dto.DailyInformationDto;
-import dto.WeeklySummaryDto;
+import pl.project.pvpredictbackend.dto.DailyInformationDto;
+import pl.project.pvpredictbackend.dto.WeeklySummaryDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import service.PredictService;
+import pl.project.pvpredictbackend.service.PredictService;
 
 import java.util.List;
 

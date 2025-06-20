@@ -1,6 +1,7 @@
-package service;
+package pl.project.pvpredictbackend.service;
 
-import dto.OpenMeteoResponseDto;
+import org.springframework.web.client.HttpClientErrorException;
+import pl.project.pvpredictbackend.dto.OpenMeteoResponseDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -28,12 +29,16 @@ public class OpenMeteoClient {
                 .path("/v1/forecast")
                 .queryParam("latitude", latitude)
                 .queryParam("longitude", longitude)
-                .queryParam("daily", "temperature_2m_min,temperature_2m_max,weather_code,sunshine_duration,pressure_msl")
+                .queryParam("daily", "temperature_2m_min,temperature_2m_max,weather_code,sunshine_duration,surface_pressure_mean")
                 .queryParam("timezone", "auto")
                 .build();
 
         String url = uriComponents.toUriString();
 
-        return restTemplate.getForObject(url, OpenMeteoResponseDto.class);
+        try {
+            return restTemplate.getForObject(url, OpenMeteoResponseDto.class);
+        } catch (HttpClientErrorException e) {
+            throw new RuntimeException("Błąd żądania do Open-Meteo: " + e.getResponseBodyAsString());
+        }
     }
 }

@@ -1,14 +1,15 @@
-package service;
+package pl.project.pvpredictbackend.service;
 
-import dto.DailyInformationDto;
-import dto.OpenMeteoResponseDto;
-import dto.WeeklySummaryDto;
+import pl.project.pvpredictbackend.dto.DailyInformationDto;
+import pl.project.pvpredictbackend.dto.OpenMeteoResponseDto;
+import pl.project.pvpredictbackend.dto.WeeklySummaryDto;
 import org.springframework.stereotype.Service;
-import util.PvEnergyCalculator;
+import pl.project.pvpredictbackend.util.PvEnergyCalculator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service responsible for retrieving, processing, and transforming weather data into formats usable by the controller.
@@ -42,7 +43,7 @@ public class PredictService {
             int weatherCode = response.getDaily().getWeather_code().get(i);
             double minTemp = response.getDaily().getTemperature_2m_min().get(i);
             double maxTemp = response.getDaily().getTemperature_2m_max().get(i);
-            double sunshineHours = response.getDaily().getSunshine().get(i) / 3600.0; // transform seconds to hours
+            double sunshineHours = response.getDaily().getSunshine_duration().get(i) / 3600.0; // transform seconds to hours
 
             double generatedEnergy = PvEnergyCalculator.calculateGeneratedEnergy(sunshineHours);
 
@@ -70,8 +71,8 @@ public class PredictService {
 
         OpenMeteoResponseDto response = openMeteoClient.getWeeklyForecast(latitude, longitude);
 
-        List<Double> pressure = response.getDaily().getPressure_msl();
-        List<Double> sunshine = response.getDaily().getSunshine();
+        List<Double> pressure = response.getDaily().getSurface_pressure_mean();
+        List<Double> sunshine = response.getDaily().getSunshine_duration();
         List<Double> minTemps = response.getDaily().getTemperature_2m_min();
         List<Double> maxTemps = response.getDaily().getTemperature_2m_max();
         List<Integer> weatherCodes = response.getDaily().getWeather_code();

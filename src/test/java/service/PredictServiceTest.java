@@ -1,11 +1,13 @@
 package service;
 
-import dto.DailyInformationDto;
-import dto.OpenMeteoResponseDto;
-import dto.WeeklySummaryDto;
+import pl.project.pvpredictbackend.dto.DailyInformationDto;
+import pl.project.pvpredictbackend.dto.OpenMeteoResponseDto;
+import pl.project.pvpredictbackend.dto.WeeklySummaryDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import util.PvEnergyCalculator;
+import pl.project.pvpredictbackend.service.OpenMeteoClient;
+import pl.project.pvpredictbackend.service.PredictService;
+import pl.project.pvpredictbackend.util.PvEnergyCalculator;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package dto;
+package pl.project.pvpredictbackend.dto;
 
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class OpenMeteoResponseDto {
         private List<Integer> weather_code;
         private List<Double> temperature_2m_min;
         private List<Double> temperature_2m_max;
-        private List<Double> sunshine; // in seconds
-        private List<Double> pressure_msl;
+        private List<Double> sunshine_duration; // in seconds
+        private List<Double> surface_pressure_mean;
     }
 }

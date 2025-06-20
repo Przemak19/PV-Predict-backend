@@ -1,4 +1,4 @@
-package dto;
+package pl.project.pvpredictbackend.dto;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package util;
+package pl.project.pvpredictbackend.util;
 
 /**
  * Utility class for calculating generated solar energy based on installation parameters.
