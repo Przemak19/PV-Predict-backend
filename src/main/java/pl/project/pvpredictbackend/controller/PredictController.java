@@ -1,5 +1,8 @@
 package pl.project.pvpredictbackend.controller;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import org.springframework.validation.annotation.Validated;
 import pl.project.pvpredictbackend.dto.DailyInformationDto;
 import pl.project.pvpredictbackend.dto.WeeklySummaryDto;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import java.util.List;
 /**
  * REST controller exposing endpoints to retrieve solar forecast and weather summaries for a given location.
  */
+@Validated
 @RestController
 @RequestMapping("/api/predict")
 public class PredictController {
@@ -30,7 +34,7 @@ public class PredictController {
      */
     @GetMapping("/forecast")
     public List<DailyInformationDto> get7DayForecast(
-            @RequestParam double latitude,
+            @RequestParam @DecimalMin("-90.0") @DecimalMax("90.0") double latitude,
             @RequestParam double longitude) {
         return predictService.getWeekForecast(latitude, longitude);
     }
@@ -42,8 +46,8 @@ public class PredictController {
      */
     @GetMapping("/summary")
     public WeeklySummaryDto getWeeklySummary(
-            @RequestParam double latitude,
-            @RequestParam double longitude) {
+            @RequestParam @DecimalMin("-90.0") @DecimalMax("90.0") double latitude,
+            @RequestParam @DecimalMin("-180.0") @DecimalMax("180.0") double longitude) {
         return predictService.getSummary(latitude, longitude);
     }
 }
