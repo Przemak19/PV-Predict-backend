@@ -2,7 +2,7 @@
 
 <!-- HEADER STYLE: CLASSIC -->
 <div align="center">
-<img src="PV-Predict-backend.png" width="30%" style="position: relative; top: 0; right: 0;" alt="Project Logo"/>
+<img src="pv-predict-backend.png" width="30%" style="position: relative; top: 0; right: 0;" alt="Project Logo"/>
 
 # PV-PREDICT-BACKEND
 </div>
