@@ -35,8 +35,8 @@ public class PredictServiceTest {
         daily.setWeather_code(List.of(1));
         daily.setTemperature_2m_min(List.of(12.0));
         daily.setTemperature_2m_max(List.of(25.0));
-        daily.setSunshine(List.of(10800.0)); // 3h
-        daily.setPressure_msl(List.of(1012.0));
+        daily.setSunshine_duration(List.of(10800.0)); // 3h
+        daily.setSurface_pressure_mean(List.of(1012.0));
         mockResponse.setDaily(daily);
 
         when(openMeteoClient.getWeeklyForecast(50.0, 20.0)).thenReturn(mockResponse);
@@ -55,8 +55,8 @@ public class PredictServiceTest {
         OpenMeteoResponseDto mockResponse = new OpenMeteoResponseDto();
         OpenMeteoResponseDto.Daily daily = new OpenMeteoResponseDto.Daily();
 
-        daily.setPressure_msl(List.of(1010.0, 1020.0));
-        daily.setSunshine(List.of(7200.0, 14400.0)); // 2h, 4h
+        daily.setSurface_pressure_mean(List.of(1010.0, 1020.0));
+        daily.setSunshine_duration(List.of(7200.0, 14400.0)); // 2h, 4h
         daily.setTemperature_2m_min(List.of(10.0, 12.0));
         daily.setTemperature_2m_max(List.of(20.0, 22.0));
         daily.setWeather_code(List.of(51, 1));
@@ -70,6 +70,6 @@ public class PredictServiceTest {
         assertEquals(3.0, summary.getAverageWeekSunExposureHours());
         assertEquals(10.0, summary.getMinWeekTemperature());
         assertEquals(22.0, summary.getMaxWeekTemperature());
-        assertEquals("bez opadów", summary.getGeneralWeatherSummary());
+        assertEquals("Without precipitation", summary.getGeneralWeatherSummary());
     }
 }
